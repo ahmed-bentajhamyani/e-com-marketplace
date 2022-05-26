@@ -1,0 +1,205 @@
+<div class="container">
+  <div class="d-flex justify-content-between my-3">
+    <h3 *ngIf="!showForm  && !oneArticle">List of Articles</h3>
+    <h3 *ngIf="showForm  && !oneArticle">Add new Article</h3>
+    <h3 *ngIf="!showForm  && oneArticle">Article Details</h3>
+
+    <button *ngIf="!showForm && !oneArticle" class="btn btn-dark btn-sm"
+      (click)="showForm = !showForm; editForm = false">
+      <i class="fas fa-plus"></i> New Article
+    </button>
+
+    <button *ngIf="showForm && !oneArticle" class="btn btn-dark btn-sm"
+      (click)="showForm = !showForm; editForm = false">
+      <i class="fas fa-list"></i> Articles List
+    </button>
+
+    <button *ngIf="oneArticle" class="btn btn-dark btn-sm" (click)="oneArticle = false">
+      <i class="fas fa-list"></i> Articles List
+    </button>
+  </div>
+
+  <!-- Form -->
+  <div *ngIf="showForm && !oneArticle" class="row my-5">
+    <div class="col-md-12">
+      <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+        <div class="card-body">
+          <div class="form-group my-3">
+            <label for="label">Nom d'article</label>
+            <input type="text" class="form-control" name="nomArticle" [(ngModel)]="Article.nomArticle" />
+            <small class="text-muted">Help text</small>
+          </div>
+
+          <div class="form-group my-3">
+            <label class="form-check-label">Description</label>
+            <input type="text" class="form-control" name="description" [(ngModel)]="Article.description" />
+          </div>
+
+          <div class="form-group my-3">
+            <label class="form-check-label">Image d'article</label>
+            <input type="file" class="form-control" name="image" (change)="onFileSelected($event)" />
+          </div>
+
+          <div class="form-group my-3">
+            <label class="form-check-label">Prix d'article</label>
+            <input type="number" class="form-control" name="prixUnitaire" [(ngModel)]="Article.prixUnitaire" />
+          </div>
+
+          <div class="form-group my-3">
+            <label class="form-check-label">Quantite en Stock</label>
+            <input type="number" class="form-control" name="qteStock" [(ngModel)]="Article.qteStock" />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="">Categorie d'article</label>
+            <div class="input-group mb-3">
+              <select class="form-select" name="categorie_id" [(ngModel)]="Article.categorie_id">
+                <option *ngFor="let categorie of categories" [ngValue]="categorie.id">
+                  {{ categorie.nomCategorie }}
+                </option>
+              </select>
+            </div>
+            <div class="invalid-feedback">
+              Le champ categorie d'article est obligatiore!
+            </div>
+          </div>
+
+          <button *ngIf="!editForm" (click)="persistArticle()" class="btn btn-success btn-block">
+            <i class="fa fa-paper-plane"></i> New Article
+          </button>
+
+          <button *ngIf="editForm" (click)="updateArticle()" class="btn btn-warning btn-block">
+            <i class="fa fa-refresh"></i> Update Article
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- One Article -->
+  <div *ngIf="oneArticle" class="my-5 row">
+    <div class="col-md-12">
+      <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+        <div class="card-body">
+          <div class="d-flex rounded">
+
+            <div class="mx-5 my-3 col-md-5 px-3 py-3">
+              <img class="img-fluid rounded" src="{{ imageDirectory }}{{ article.image }}" alt="{{ article.image }}">
+            </div>
+            <div class="d-flex flex-column justify-content-center my-5">
+              <div class="mx-3 my-auto">
+
+                <div class="d-flex align-items-center justify-content-between mb-0">
+                  <h3 class="mb-0">{{ article.nomArticle }}</h3>
+                  <p class="mb-0">${{ article.prixUnitaire }}</p>
+                </div>
+
+                <p class="my-0"> {{ categorie.nomCategorie }} </p>
+
+                <h5 class="mt-2">{{ article.description }} </h5>
+                <div class="d-flex align-items-center justify-content-between mb-0">
+                  <h6 class="text-success">{{ article.qteStock }} items left</h6>
+                  <h6 class="text-success">Added at {{ article.created_at }}</h6>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-center my-5 d-grid">
+                <button (click)="editArticle(article); showForm = !showForm" class="btn btn-warning btn-sm mx-1">
+                  <i class="fa fa-pencil"></i> Edit
+                </button>
+                <button (click)="deleteArticle(article.id)" class="btn btn-danger btn-sm mx-1">
+                  <i class="fa fa-trash"></i> Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- List -->
+  <div *ngIf="!showForm && !oneArticle" class="my-5 row">
+    <ng-container *ngFor="let article of articles">
+      <ng-container *ngIf=" searchText == '' || article.nomArticle.toLowerCase().includes(searchText.toLowerCase())">
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm mb-3 HOVER" style="border-radius: 10px; height: 380px; width: 400;">
+            <div class="card-body">
+
+              <div class="text-center">
+                <button (click)="getOneArticle(article.id); oneArticle = true" style="padding: 0;
+                  border: none;
+                  background: none;">
+                  <img class="img-fluid rounded" src="{{ imageDirectory }}{{ article.image }}" alt="{{ article.image }}"
+                    style="height: 180px; width: 110;">
+                </button>
+              </div>
+
+              <div class="mt-3">
+                <div class="row">
+                  <h5 class="mb-1 col-md-8">{{ article.nomArticle }}</h5>
+                  <p class="mb-1 col-md-4">${{ article.prixUnitaire }}</p>
+                </div>
+                <p style="display: -webkit-box; -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;">{{ article.description }} </p>
+
+                <div class="text-center">
+                  <button (click)="getOneArticle(article.id); oneArticle = true" class="btn btn-primary btn-sm mx-1">
+                    <i class="fa fa-circle-info"></i>
+                  </button>
+                  <button (click)="editArticle(article); showForm = !showForm" class="btn btn-warning btn-sm mx-1">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button (click)="deleteArticle(article.id)" class="btn btn-danger btn-sm mx-1">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<!-- <div class="col-md-12">
+  <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+    <div class="card-body">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Nom d'article</th>
+            <th scope="col">Prix d'article</th>
+            <th scope="col">Quantite en stock</th>
+            <th scope="col">La date de création</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let article of articles">
+            <td>{{ article.nomArticle }}</td>
+            <td>${{ article.prixUnitaire }}</td>
+            <td>{{ article.qteStock }}</td>
+            <td>{{ article.created_at }}</td>
+            <td>
+              <button (click)="getOneArticle(article.id); oneArticle = true" class="btn btn-primary btn-sm mx-1">
+                <i class="fa fa-circle-info"></i>
+              </button>
+              <button (click)="editArticle(article); showForm = !showForm" class="btn btn-warning btn-sm mx-1">
+                <i class="fa fa-pencil"></i>
+              </button>
+              <button (click)="deleteArticle(article.id)" class="btn btn-danger btn-sm mx-1">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> -->

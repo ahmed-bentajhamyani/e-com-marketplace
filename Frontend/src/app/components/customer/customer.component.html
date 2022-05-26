@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="my-3">
+        <h3>List of Customers</h3>
+    </div>
+
+    <!-- List -->
+    <div class="my-5 row">
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col">Country</th>
+                                <th scope="col">City</th>
+                                <th scope="col">Adrress</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let customer of customers">
+                                <td>{{ customer.name }}</td>
+                                <td>{{ customer.email }}</td>
+                                <td>{{ customer.telephone }}</td>
+                                <td>{{ customer.pays }}</td>
+                                <td>{{ customer.ville }}</td>
+                                <td>{{ customer.adresse }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

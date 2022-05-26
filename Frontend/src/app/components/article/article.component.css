@@ -1,0 +1,7 @@
+.HOVER:hover{
+    transform: scale(1.05);
+    transition: all linear 200ms;
+    z-index: 1;
+    box-shadow: 1px 1px 10px rgba(0,0,0,.3);
+    cursor: pointer;
+  }

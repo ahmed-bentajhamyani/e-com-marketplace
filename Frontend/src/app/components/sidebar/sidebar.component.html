@@ -1,0 +1,33 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-dark bg-white shadow fixed-top" id="myDIV"
+    style="width: 280px; height: 100vh;">
+    
+    <a href="/" class="d-flex align-items-center justify-content-between mb-3 mb-md-0 text-dark text-decoration-none">
+        <img src="../../../assets/images/logo/logo.svg" style="height: 80px; width: 350px;">
+    </a>
+
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+
+            <a routerLink="dashboard" class="nav-link" (click)="activateClass(1)"
+                [ngClass]="{'active text-white': selectedOne === 1}"><i class="fa fa-home"></i> Dashboard</a>
+
+            <a routerLink="articles" class="nav-link" (click)="activateClass(2)"
+                [ngClass]="{'active text-white': selectedOne === 2}"><i class="fa fa-table-cells-large"></i>
+                Products</a>
+
+            <a routerLink="categories" class="nav-link" (click)="activateClass(3)"
+                [ngClass]="{'active text-white': selectedOne === 3}"><i class="fa fa-list"></i> Categories</a>
+
+            <a routerLink="transactions" class="nav-link" (click)="activateClass(4)"
+                [ngClass]="{'active text-white': selectedOne === 4}"><i class="fa fa-credit-card"></i> Transaction</a>
+
+            <a routerLink="customers" class="nav-link" (click)="activateClass(5)"
+                [ngClass]="{'active text-white': selectedOne == 5}"><i class="fa fa-user-circle"></i> Customers</a>
+        </li>
+
+    </ul>
+    <div class="nav nav-pills flex-column">
+        <a routerLink="/" class="btn btn-primary">Preview</a>
+    </div>
+</div>

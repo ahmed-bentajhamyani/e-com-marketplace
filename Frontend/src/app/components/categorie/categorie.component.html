@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="d-flex justify-content-between my-3">
+
+        <h3 *ngIf="!showForm">List of Categories</h3>
+        <h3 *ngIf="showForm">Add new Category</h3>
+
+        <button *ngIf="!showForm" class="btn btn-dark btn-sm" (click)="showForm = !showForm; editForm = false">
+            <i class="fas fa-plus"></i> New Category
+        </button>
+
+        <button *ngIf="showForm" class="btn btn-dark btn-sm" (click)="showForm = !showForm; editForm = false">
+            <i class="fas fa-list"></i> Categories List
+        </button>
+    </div>
+
+    <!-- Form -->
+    <div *ngIf="showForm" class="row my-5">
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+                <div class="card-body">
+                    <div class="form-group my-3">
+                        <label for="label">Nom de categorie</label>
+                        <input type="text" class="form-control" name="nomCategorie" [(ngModel)]="Categorie.nomCategorie">
+                        <!-- <small class="text-muted">Help text</small> -->
+                    </div>
+
+                    <button *ngIf="!editForm" (click)="persistCategorie()" class="btn btn-success btn-block">
+                        <i class="fa fa-paper-plane"></i> New Categorie
+                    </button>
+
+                    <button *ngIf="editForm" (click)="updateCategorie()" class="btn btn-warning btn-block">
+                        <i class="fa fa-refresh"></i> Update Categorie
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- List -->
+    <div *ngIf="!showForm" class="my-5 row">
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nom de categorie</th>
+                                <th scope="col">La date de création</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let categorie of categories">
+                                <td>{{ categorie.nomCategorie }}</td>
+                                <td>{{ categorie.created_at }}</td>
+                                <td>
+                                    <button (click)="editCategorie(categorie); showForm = !showForm"
+                                        class="btn btn-warning btn-sm mx-1">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button (click)="deleteCategorie(categorie.id)" class="btn btn-danger btn-sm mx-1">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

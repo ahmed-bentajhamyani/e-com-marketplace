@@ -1,0 +1,36 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+
+        <div class="fadeIn first">
+            Register
+        </div>
+
+        <!-- Login Form -->
+        <form>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="User.name" placeholder="name">
+            <input type="text" id="email" class="fadeIn second" name="email" [(ngModel)]="User.email"
+                placeholder="email">
+            <input type="password" id="password" class="fadeIn third" name="password" [(ngModel)]="User.password"
+                placeholder="password">
+            <input type="password" class="form-control" name="password_confirmation"
+                [(ngModel)]="User.password_confirmation" placeholder="Confirm Password">
+            <input type="text" class="form-control" id="telephone" name="telephone" [(ngModel)]="User.telephone"
+                placeholder="Phone number">
+            <input type="text" class="form-control" name="pays" [(ngModel)]="User.pays" placeholder="Country">
+            <input type="text" class="form-control" name="ville" [(ngModel)]="User.ville" placeholder="City">
+            <input type="text" class="form-control" name="adresse" [(ngModel)]="User.adresse" placeholder="Address">
+
+            <button type="submit" class="send" (click)="register()">Register</button>
+
+            <!-- <div  *ngIf="!this.authService.status" class="alert alert-danger" role="alert">
+            email or password incorrect
+        </div> -->
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a routerLink="/login" class="underlineHover">I have acount</a>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<!-- Article -->
+<div class="row mt-4 mx-auto">
+  <div class="col-md-11 mx-4">
+    <div class="card shadow-sm">
+
+      <div class="card-body">
+        <div class="row">
+
+          <div class="mb-4 mt-4 col-md-6 text-center">
+            <img src="{{ imageDirectory }}{{ article.image }}" class="card-img-top img-fluid img-fluid rounded"
+              alt="{{ article.image }}" style="height: 350px; width: 350px;">
+          </div>
+
+          <div class="col-md-6 d-flex flex-column justify-content-center align-items-around">
+
+            <div class="d-flex justify-content-between align-items-center">
+              <h3 class="">{{article.nomArticle}}</h3>
+              <div class="d-flex justify-content-between p-3">
+                <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+                  style="width: 35px; height: 35px;">
+                  <p class="text-white mb-0 small">x{{article.qteStock}}</p>
+                </div>
+              </div>
+            </div>
+
+            <p class="">{{article.description}}</p>
+
+            <hr>
+
+            <h5 class="mb-0">${{article.prixUnitaire}}</h5>
+            <div class="d-flex justify-content-between">
+
+              <p class="mt-0"><small>+ Shipping coast is <mark>$8.50</mark> to Morocco</small></p>
+
+              <p class=""><strong>
+                  <ng-container *ngIf="article.qteStock<5">Just </ng-container>{{article.qteStock}} items left...
+                </strong></p>
+            </div>
+
+            <p *ngIf="authService.status==1">
+              <a [routerLink]="['/cart', article.id]" style="background-color :#f5cf0f"
+                class="btn btn-cart my-2 btn-block"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </p>
+            <p *ngIf="authService.status==0">
+              <a [routerLink]="['/login']" style="background-color :#f5cf0f" class="btn btn-cart my-2 btn-block"><i
+                  class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- You may also like -->
+
+<div class="row mt-4 mx-auto">
+  <div class="col-md-11 mx-4">
+    <div class="card card-products shadow-sm">
+
+      <div class="card-title">
+        <h5> You may also like</h5>
+      </div>
+
+      <div class="row my-5">
+        <div *ngFor="let article of similar_article" class="col-md-4">
+
+          <div class="card HOVER">
+
+            <div class="d-flex justify-content-between p-3">
+              <p class="lead mb-0">{{article.nomArticle}}</p>
+              <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+                style="width: 35px; height: 35px;">
+                <p class="text-white mb-0 small">x{{article.qteStock}}</p>
+              </div>
+            </div>
+
+            <a [routerLink]="['/dettails', article.id]" (click)="scroll('navb')">
+              <img src="{{ imageDirectory }}{{ article.image }}" class="card-img-top" alt="Laptop"
+                style="width: 240px; height: 243px;" />
+            </a>
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-3">
+                <h5 class="mb-0">{{article.nomArticle}}</h5>
+                <h5 class="text-dark mb-0">$ {{article.prixUnitaire}}</h5>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <p class="text-muted mb-0">Available: <span class="fw-bold">{{article.qteStock}}</span>
+                </p>
+                <span><a [routerLink]="['/dettails', article.id]" (click)="scroll('navb')"><i class="fa-solid fa-eye"></i></a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="h">
+
+</div>

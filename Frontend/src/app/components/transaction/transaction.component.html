@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="d-flex justify-content-between my-3">
+        <h3 *ngIf="!oneTransaction">List of Transactions</h3>
+        <h3 *ngIf="oneTransaction">Transaction Details</h3>
+
+        <button *ngIf="oneTransaction" class="btn btn-dark btn-sm" (click)="oneTransaction = false">
+            <i class="fas fa-list"></i> Liste of Transaction
+        </button>
+    </div>
+
+    <!-- One Transaction -->
+    <div *ngIf="oneTransaction" class="my-5 row">
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+
+                <div class="card-header bg-transparent border-0 mt-2">
+                    <h5>Top Selling Products</h5>
+                </div>
+
+                <div class="card-body">
+
+                    <!-- Products -->
+                    <div *ngFor="let article of articles">
+                        <div class="card border-0 shadow-sm mb-2 HOVER"
+                            style="border-radius: 10px; height: 120px; width: 130;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img class="img-fluid rounded" src="{{ imageDirectory }}{{ article.image }}"
+                                            alt="{{ article.image }}" style="height: 100px; width: 90;">
+                                    </div>
+
+                                    <div class="col-md-10">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6 mb-0">
+                                                <div class="row mb-0">
+                                                    <h5 class="col-md-6">{{ article.nomArticle }}</h5>
+                                                    <p class="col-md-6">${{ article.prixUnitaire }}</p>
+                                                </div>
+                                                <p class="mt-0" 
+                                                style="display: -webkit-box; 
+                                                    -webkit-line-clamp: 2;
+                                                    -webkit-box-orient: vertical;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;"
+                                                >{{ article.description }} </p>
+                                            </div>
+                                            <div class="col-md-6 text-end">
+                                                <div *ngFor="let article_transaction of article_transactions">
+                                                    <h4 *ngIf="article_transaction.article_id == article.id"
+                                                        class="mt-0">x{{article_transaction.quantite}} </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- List -->
+    <div *ngIf="!oneTransaction" class="my-5 row">
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date of Transaction</th>
+                                <th scope="col">TTC</th>
+                                <th scope="col">Details</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let transaction of transactions">
+                                <td>{{ transaction.dateTransaction }}</td>
+                                <td>${{ transaction.ttc }}</td>
+                                <td>
+                                    <button class="badge bg-success rounded-pill text-decoration-none border-0 mx-1"
+                                        (click)="getOneTransaction(transaction.id);">
+                                        view details
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

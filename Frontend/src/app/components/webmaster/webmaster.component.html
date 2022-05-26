@@ -1,0 +1,23 @@
+<div class="d-flex">
+    <aside>
+        <app-sidebar (searchBar)="noSearchBar()"></app-sidebar>
+    </aside>
+    
+    
+    <div class="flex-grow-1" style="margin-left: 240px;">
+        <div>
+            <app-header (searchTextChanged)="onSearchTextEntered($event)"></app-header>
+        </div>
+        
+        <div class="col-md-10 mx-auto" style="margin-top: 100px;">
+            <div *ngIf="!searchBar">
+                <router-outlet></router-outlet>
+            </div>
+
+            <div *ngIf="searchBar">
+                <app-article [searchText]="searchText"></app-article>
+            </div>
+           
+        </div>
+    </div>
+</div>

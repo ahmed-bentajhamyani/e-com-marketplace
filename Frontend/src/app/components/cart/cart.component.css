@@ -1,0 +1,39 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900');
+
+
+.card-empty {
+  padding: 16px;
+  text-align: center;
+}
+
+.card-title {
+  padding: 16px;
+  text-align: center;
+}
+.card-total{
+  text-align: center;
+}
+
+.HOVER:hover {
+  transform: scale(1.1);
+  transition: all linear 200ms;
+  z-index: 1;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .3);
+  cursor: pointer;
+}
+
+
+.dis {
+  display: flex;
+}
+
+.H {
+  height: 30px;
+}
+
+/* Latest Produtcs */
+
+.ligne {
+  display: flex;
+}

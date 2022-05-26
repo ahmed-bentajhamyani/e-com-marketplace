@@ -1,0 +1,209 @@
+<div class="container">
+    <h3>Dashboard</h3>
+
+    <!-- Row 1 -->
+    <div class="row my-4">
+
+        <!-- Customers -->
+        <div class="col-sm-3">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-around align-items-center">
+
+                        <h1><i class="fa-solid fa-user"></i></h1>
+
+                        <div class="d-flex flex-column">
+                            <p class="text-muted fw-normal mb-0">Customers</p>
+                            <h5 class=""> {{ customersNumber }} </h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders -->
+        <div class="col-sm-3">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-around align-items-center">
+
+                        <h1><i class="fa-solid fa-credit-card"></i></h1>
+
+                        <div class="d-flex flex-column">
+                            <p class="text-muted fw-normal mb-0">Orders</p>
+                            <h5 class=""> {{ ordersNumber }} </h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales -->
+        <div class="col-sm-3">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-around align-items-center">
+
+                        <h1><i class="fa-solid fa-hand-holding-dollar"></i></h1>
+
+                        <div class="d-flex flex-column">
+                            <p class="text-muted fw-normal mb-0">Sales</p>
+                            <h5 class=""> {{ salesNumber }} </h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue -->
+        <div class="col-sm-3">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-around align-items-center">
+
+                        <h1><i class="fa-solid fa-sack-dollar"></i></h1>
+
+                        <div class="d-flex flex-column">
+                            <p class="text-muted fw-normal mb-0">Revenue</p>
+                            <h5 class="">${{ chiffre }} </h5>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row my-4">
+
+        <!-- Top Selling Products -->
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+
+                <div class="card-header bg-transparent border-0 mt-2">
+                    <div class="d-flex justify-content-between p-0">
+                        <h5>Top Selling Products</h5>
+                        <a class="btn btn-primary" (click)="showArticles()" style="font-size: 0.72rem;">View All</a>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <ng-container *ngIf="ordersNumber>0">
+                        <!-- Products -->
+                        <div *ngFor="let article of articles">
+                            <div class="card border-0 shadow-sm mb-2 HOVER"
+                                style="border-radius: 10px; height: 120px; width: 130;">
+                                <div class="card-body">
+                                    <div class="d-flex">
+
+                                        <div class="align-self-start">
+                                            <img class="img-fluid rounded" src="{{ imageDirectory }}{{ article.image }}"
+                                                alt="{{ article.image }}" style="height: 100px; width: 90;">
+                                        </div>
+
+                                        <div class="ms-4 mb-0">
+
+                                            <div class="d-flex mb-0">
+                                                <h5 class="me-3">{{ article.nomArticle }}</h5>
+                                                <p class="">${{ article.prixUnitaire }}</p>
+                                            </div>
+                                            <p class="mt-0" style="display: -webkit-box; 
+                                                -webkit-line-clamp: 2;
+                                                -webkit-box-orient: vertical;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;">{{ article.description }} 
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="ordersNumber==0">
+                        <p class="text-center" style="margin: 90px 0;">No transaction found</p>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="row my-4">
+
+        <!-- Top Selling Categories -->
+        <div class="col-md-5">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+
+                <div class="card-header bg-transparent border-0 mt-2">
+                    <div class="d-flex justify-content-between p-0">
+                        <h5>Top Selling Categories</h5>
+                        <a class="btn btn-primary" (click)="showCategories()" style="font-size: 0.72rem;">View All</a>
+                    </div>
+                </div>
+
+                <div class="card-body">
+
+                    <ng-container *ngIf="ordersNumber>0">
+                        <!-- Categories -->
+                        <div *ngFor="let categorie of categories" class="card border-0 shadow-sm my-2 HOVER"
+                            style="border-radius: 10px;">
+                            <div class="card-body">
+                                <h5 class="my-0"> {{ categorie.nomCategorie }} </h5>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="ordersNumber==0">
+                        <p class="text-center" style="margin: 50px 0;">No transaction found</p>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Customers -->
+        <div class="col-md-7">
+            <div class="card border-0 shadow-sm" style="border-radius: 10px;">
+
+                <div class="card-header bg-transparent border-0 mt-2">
+                    <div class="d-flex justify-content-between">
+                        <h5>New Customers</h5>
+                        <a class="btn btn-primary" (click)="showCustomers()" style="font-size: 0.72rem;">View All</a>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <!-- Customers -->
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Country</th>
+                                <th scope="col">City</th>
+                                <th scope="col">Adrress</th>
+                            </tr>
+                        </thead>
+
+                        <tbody style="font-size: 0.813rem;">
+                            <tr *ngFor="let newcustomer of newcustomers">
+                                <td class="col-2 text-truncate" style="max-width: 80px;">{{ newcustomer.name }}</td>
+                                <td class="col-2 text-truncate" style="max-width: 80px;">{{ newcustomer.email }}</td>
+                                <td class="col-2">{{ newcustomer.telephone }}</td>
+                                <td class="col-2">{{ newcustomer.pays }}</td>
+                                <td class="col-2">{{ newcustomer.ville }}</td>
+                                <td class="col-2 text-truncate" style="max-width: 80px;">{{ newcustomer.adresse }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

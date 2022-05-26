@@ -1,0 +1,91 @@
+<!--footer starts from here-->
+<footer class="footer" id="footer">
+  <div class="container bottom_border">
+    <div class="row">
+      <div class="goTop">
+        <a (click)="scroll('navb')" id="nv">Go to top </a>
+      </div>
+      <div class=" col-sm-4 col-md col-sm-4  col-12 col">
+        <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+        <!--headin5_amrc-->
+        <p class="mb10">Nous servons avec passion nos clients Toutefois, si nous pensons d’abord à eux, nous accordons
+          également la plus grande importance à notre empreinte économique, sociale et environnementale au niveau local.
+          En mettant toute notre énergie, notre savoir-faire et notre capacité d’innovation au service des clients</p>
+        <p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 Tanger 35 </p>
+        <p><i class="fa fa-phone"></i> +91-9999878398 </p>
+        <p><i class="fa fa fa-envelope"></i> info@support.com </p>
+
+
+      </div>
+
+
+      <div class=" col-sm-4 col-md  col-6 col">
+        <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+        <!--headin5_amrc-->
+        <ul class="footer_ul_amrc">
+          <li><a href="http://webenlance.com">Image Rectoucing</a></li>
+          <li><a href="http://webenlance.com">Clipping Path</a></li>
+          <li><a href="http://webenlance.com">Hollow Man Montage</a></li>
+          <li><a href="http://webenlance.com">Ebay & Amazon</a></li>
+          <li><a href="http://webenlance.com">Hair Masking/Clipping</a></li>
+          <li><a href="http://webenlance.com">Image Cropping</a></li>
+        </ul>
+        <!--footer_ul_amrc ends here-->
+      </div>
+
+
+      <div class=" col-sm-4 col-md  col-6 col">
+        <h5 class="headin5_amrc col_white_amrc pt2">Categories</h5>
+        <!--headin5_amrc-->
+        <ul class="footer_ul_amrc">
+          <ng-container *ngFor="let categorie of categories">
+            <li><a class="goToCategorie" (click)="scroll('categorie'+categorie.id)">{{categorie.nomCategorie}}</a></li>
+          </ng-container>
+
+        </ul>
+        <!--footer_ul_amrc ends here-->
+      </div>
+
+
+      <div class=" col-sm-4 col-md  col-12 col">
+        <h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
+        <!--headin5_amrc ends here-->
+
+        <ul class="footer_ul2_amrc">
+          <li><a class="text-decoration-none" href="https://www.linkedin.com/in/ahmed-bentaj-hamyani-8917a41bb/"><i
+                class="fab fa-linkedin fleft padding-right"></i>
+              <p>Bentaj Hamyani Ahmed</p>
+            </a></li>
+          <li><a class="text-decoration-none" href="https://www.linkedin.com/in/fouad-el-metioui-376198202/"><i
+                class="fab fa-linkedin fleft padding-right"></i>
+              <p>ELMETIOUI Fouad</p>
+            </a></li>
+        </ul>
+        <!--footer_ul2_amrc ends here-->
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <ul class="foote_bottom_ul_amrc">
+      <li><a routerLink="">Home</a></li>
+      <li><a href="http://webenlance.com">About</a></li>
+      <li><a href="http://webenlance.com">Services</a></li>
+      <li><a href="http://webenlance.com">Pricing</a></li>
+      <li><a href="http://webenlance.com">Blog</a></li>
+      <li><a href="http://webenlance.com">Contact</a></li>
+    </ul>
+    <!--foote_bottom_ul_amrc ends here-->
+    <p class="text-center">Copyright @2022 | Designed With by <a href="#">Electronico</a></p>
+
+    <ul class="social_footer_ul">
+      <li><a href="http://facebook.com" target="blank"><i class="fab fa-facebook-f"></i></a></li>
+      <li><a href="http://twitter.com" target="blank"><i class="fab fa-twitter"></i></a></li>
+      <li><a href="http://linkedin.com" target="blank"><i class="fab fa-linkedin"></i></a></li>
+      <li><a href="http://instagram.com" target="blank"><i class="fab fa-instagram"></i></a></li>
+    </ul>
+    <!--social_footer_ul ends here-->
+  </div>
+
+</footer>

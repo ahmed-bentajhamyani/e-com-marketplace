@@ -2,7 +2,7 @@
 	<img src="https://user-images.githubusercontent.com/101653735/202849820-dfeaabcf-4dd9-4452-a847-5a767462fd9d.png" >
 </p>
 
-# Market-place
+# E-commerce marketplace as Single Page Application
 Notre projet consiste à la conception et la mise en œuvre d’un site web dynamique, concerne une application web basée sur une architecture REST. En effet, le but de notre travail est d’offrir une application générale, consiste à réaliser une market place, là où on peut gérer des items, catégories et profils, présenter des articles selon leurs catégories, offrir un système de gestion du panier, système d’authentification et un dashboard d’admin où il peut consulter les statiques de l’application.
 
 **Outils :** Laravel/RestAPI, Angular, Bootstrap, JavaScript, JSON, PHP, MySQL, Sanctum, Github.

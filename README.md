@@ -5,6 +5,8 @@
 # Market-place
 Notre projet consiste à la conception et la mise en œuvre d’un site web dynamique, concerne une application web basée sur une architecture REST. En effet, le but de notre travail est d’offrir une application générale, consiste à réaliser une market place, là où on peut gérer des items, catégories et profils, présenter des articles selon leurs catégories, offrir un système de gestion du panier, système d’authentification et un dashboard d’admin où il peut consulter les statiques de l’application.
 
+**Outils :** Laravel/RestAPI, Angular, Bootstrap, JavaScript, JSON, PHP, MySQL, Sanctum, Github.
+
 ## Table des matières
 
 [Partie Conception](#partie-conception)
